@@ -47,13 +47,24 @@ class LayerZero:
             created_date = None
 
             for message in messages:
-                dst_chain_list.add(message.get('dstChainKey').lower())
-                src_chain_list.add(message.get('srcChainKey').lower())
+                try:
+                    dst_chain_list.add(message.get('dstChainKey').lower())
+                    src_chain_list.add(message.get('srcChainKey').lower())
 
-                src_protocol_name = message.get('srcUaProtocol', {}).get(
-                    'name')
-                if src_protocol_name:
-                    protocol_names.add(src_protocol_name.lower())
+                    src_protocol_ = message.get('srcUaProtocol', None)
+                    if src_protocol_:
+                        src_protocol_name = src_protocol_.get('name', None)
+
+                    else:
+                        dst_protocol_ = message.get('dstUaProtocol', None)
+                        src_protocol_name = dst_protocol_.get('name', None)
+
+                    if src_protocol_name:
+                        protocol_names.add(src_protocol_name.lower())
+
+                except Exception as e:
+                    logger.error(e)
+                    pass
 
                 if not created_date and message.get(
                         'mainStatus') == 'DELIVERED':
