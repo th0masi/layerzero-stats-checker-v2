@@ -1,5 +1,5 @@
 import asyncio
-import os.path
+from pathlib import Path
 
 from core.checker import check_all_wallets
 from multiprocessing import Process
@@ -18,8 +18,15 @@ LOGFILE_PATH = "./logs/main.log"
 
 
 async def _run_updater():
-    os.remove(LOGFILE_PATH)
-    loguru.logger.add(LOGFILE_PATH)
+    logfile_path = Path(LOGFILE_PATH)
+
+    if not logfile_path.parent.exists():
+        logfile_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if logfile_path.exists():
+        logfile_path.unlink()
+
+    loguru.logger.add(logfile_path)
     await check_all_wallets()
 
 

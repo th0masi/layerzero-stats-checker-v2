@@ -1,9 +1,16 @@
 pip
 wheel
 setuptools
+aiohttp
+web3
+aiohttp_socks
+fake_useragent
+ankr-sdk
 greenlet
+better_proxy
 SQLAlchemy
-flask
+flask[async]
+loguru
 aiosqlite
 ijson
 aiofiles
