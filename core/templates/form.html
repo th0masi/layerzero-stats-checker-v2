@@ -1,0 +1,78 @@
+{% extends "base/base.html" %} {% block page %}
+    <div class="content-header">
+        <div class="content-header__header">
+            Добавить кошельки
+        </div>
+        <div class="content-header__actions">
+            <div class="labeled-switch">
+                <div class="switch">
+                    <input
+                        type="checkbox"
+                        name="addIdSwitch"
+                        id="addIdSwitch"
+                        {{ "checked" if id_value else "" }}
+                    />
+                    <label for="addIdSwitch">
+                        <div class="switch__container">
+                            <div class="switch__circle"></div>
+                        </div>
+                    </label>
+                </div>
+                <label for="addIdSwitch" class="labeled-switch__label">Указать ID</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-page">
+        <div class="card__wrap">
+            <div class="content__card">
+{#                <div class="top">#}
+{#                    <div class="top__label"></div>#}
+{#                </div>#}
+                <form class="form" action="/form" method="post">
+                    <div class="form__container">
+                        <div class="item item--wide" id="addressFormItem">
+                            <div class="item__label">Адрес</div>
+                            <textarea
+                                class="item__input"
+                                id="addressList"
+                                name="addressList"
+                                placeholder="0xEA4873d13780c0fBcd27439bc9c47AB45792C9e7&#10;0xEA4873d13780c0fBcd27439bc9c47AB45792C9e7&#10;..."
+                            >{{ wallets_value }}</textarea>
+                        </div>
+                        <div class="item item--hide" id="addressIdFormItem">
+                            <div class="item__label">ID кошелька</div>
+                            <textarea
+                                class="item__input"
+                                name="idList"
+                                placeholder="wallet1&#10;free_format&#10;..."
+                            >{{ id_value }}</textarea>
+                        </div>
+                        <div class="item item--wide">
+                            <div class="item__label">Прокси</div>
+                            <textarea
+                                class="item__input"
+                                name="proxyList"
+                                id="proxyList"
+                                placeholder="https://username:password@address:port&#10;ip:port:username:password&#10;any other valid looking proxy format&#10;"
+                            >{{ proxy_value }}</textarea>
+                        </div>
+                    </div>
+                    <div class="form__footer">
+                        <div class="form-errors">
+                            {% if proxy_error %}
+                                <div class="form-errors__error">Нет валидных прокси</div>
+                            {% endif %}
+                        </div>
+                        <div class="form__buttons">
+                            <button class="btn primary" type="submit" id="submitButton" disabled="">Пройти тест</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="card__wrap-decoration"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/js/form.js" type="module"></script>
+{% endblock %}

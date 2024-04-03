@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="/css/swiper.min.css" />
+<div class="date-slider">
+  <div class="swiper-button-prev nav-btn">
+    {% include 'svg/left-shevron.html' %}
+  </div>
+  <div class="swiper date-swiper">
+    <div class="swiper-wrapper">
+      {% for date in dates %}
+      <div
+        class="swiper-slide {% if active_date == date.day + date.number_month %}active{% endif %}"
+        onclick="setDate('{{ date.day }}{{ date.number_month }}')"
+      >
+        <div class="day">{{ date.day }}</div>
+        <div class="month">{{ date.month }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="swiper-button-next nav-btn">
+    {% include 'svg/right-shevron.html' %}
+  </div>
+</div>
+<script src="/js/vendor/swiper.min.js"></script>
+<script>
+  function setDate(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("date", encodeURIComponent(param));
+    window.location.search = urlParams.toString();
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    new Swiper(".date-swiper", {
+      loop: true,
+      slidesPerView: 7,
+      {% for date in dates %}{% if active_date == date.day + date.number_month %}initialSlide: {{ loop.index }} - 3,{% endif %}{% endfor %}
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  });
+</script>

@@ -1,0 +1,338 @@
+{% extends "base/base.html" %} {% block page %}
+    <div class="stats-page">
+        <div class="stats-page__grid">
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Общее</div>
+                </div>
+                <div class="stats-rows">
+                    <div class="stats-rows__container">
+                        <a class="stats-row" href="/download?type=all">
+                            <div class="stats-row__label">
+                                Всего кошельков
+                            </div>
+                            <div class="stats-row__data">
+                                {{ num_wallets|format_number }}
+                            </div>
+                        </a>
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Всего транзакций
+                        </div>
+                        <div class="stats-row__data">
+                            {{ num_txn|format_number }}
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Дата последнего обновления
+                        </div>
+                        <div class="stats-row__data">
+                            {{ last_update_date }}
+                        </div>
+                    </div>
+                        <a class="stats-row" href="/download?type=without_txn_this_month">
+                            <div class="stats-row__label">
+                                Нет транзакций в этом месяце
+                            </div>
+                            <div class="stats-row__data">
+                                {{ without_txn_this_month|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                            </div>
+                        </a>
+                        <a class="stats-row" href="/download?type=without_txn_mainnet">
+                            <div class="stats-row__label">
+                                Нет транзакций в майннете
+                            </div>
+                            <div class="stats-row__data">
+                                {{ without_txn_mainnet|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Информация о рангах</div>
+                </div>
+                <div class="stats-rows">
+                    <div class="stats-rows__container">
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Самый высокий ранг
+                        </div>
+                        <div class="stats-row__data">
+                            {{ min_rank|format_number }}
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Самый низкий ранг
+                        </div>
+                        <div class="stats-row__data">
+                            {{ max_rank|format_number }}
+                        </div>
+                    </div>
+                    <a class="stats-row" href="/download?type=less_100k">
+                        <div class="stats-row__label">
+                            0 - 100k
+                        </div>
+                        <div class="stats-row__data">
+                            {{ less_100k }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    <a class="stats-row" href="/download?type=less_500k">
+                        <div class="stats-row__label">
+                            100k - 500k
+                        </div>
+                        <div class="stats-row__data">
+                            {{ less_500k|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    <a class="stats-row" href="/download?type=less_1kk">
+                        <div class="stats-row__label">
+                            500k - 1kk
+                        </div>
+                        <div class="stats-row__data">
+                            {{ less_1kk|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    <a class="stats-row" href="/download?type=more_1kk">
+                        <div class="stats-row__label">
+                            1 000 000 +
+                        </div>
+                        <div class="stats-row__data">
+                            {{ more_1kk|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Информация по объему</div>
+                </div>
+                <div class="stats-rows">
+                    <div class="stats-rows__container">
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Общий объем
+                        </div>
+                        <div class="stats-row__data">
+                            {{ total_volume|format_number }} $
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Объем через Stargate
+                        </div>
+                        <div class="stats-row__data">
+                            {{ total_stargate_volume|format_number }} $
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stats-row__label">
+                            Объем через Core
+                        </div>
+                        <div class="stats-row__data">
+                            {{ total_core_volume|format_number }} $
+                        </div>
+                    </div>
+                    <a class="stats-row" href="/download?type=less_1k_volume_stargate">
+                        <div class="stats-row__label">
+                            Меньше 1k через Stargate
+                        </div>
+                        <div class="stats-row__data">
+                            {{ less_1k_volume_stargate|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    <a class="stats-row" href="/download?type=less_5k_volume_stargate">
+                        <div class="stats-row__label">
+                            Меньше 5k через Stargate
+                        </div>
+                        <div class="stats-row__data">
+                            {{ less_5k_volume_stargate|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    <a class="stats-row" href="/download?type=less_5k_volume_core">
+                        <div class="stats-row__label">
+                            Меньше 5k через Core
+                        </div>
+                        <div class="stats-row__data">
+                            {{ less_5k_volume_core|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                        </div>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Исходящие сети</div>
+                    <div class="labeled-switch">
+                        <div class="switch switch-sm">
+                            <input
+                                    type="checkbox"
+                                    name="srcNetworksStatsSwitch"
+                                    id="srcNetworksStatsSwitch"
+                            />
+                            <label for="srcNetworksStatsSwitch">
+                                <div class="switch__container">
+                                    <div class="switch__circle"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <label for="srcNetworksStatsSwitch" class="labeled-switch__label">Неиспользуемые</label>
+                    </div>
+                </div>
+                <div class="stats-cols">
+                    <div class="stats-rows" id="srcNetworksStatsContainer" data-enabled="1">
+                        <div class="stats-rows__container data-enabled">
+                        {% for chain in src_chain_list %}
+                            {% if src_chain_list[chain][0] > 0 %}
+                                <a class="stats-row" href="/download?source={{ chain|escape }}&enabled=1">
+                                    <div class="stats-row__label">
+                                        <div class="stats-row__label-wrapper">
+                                            {{ chain }}
+                                        </div>
+                                    </div>
+                                    <div class="stats-row__data">
+                                        {{ src_chain_list[chain][0]|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+
+                        {% endfor %}
+                        </div>
+                        <div class="stats-rows__container data-disabled">
+                        {% for chain in src_chain_list %}
+                            {% if src_chain_list[chain][1] > 0 %}
+                                <a class="stats-row" href="/download?source={{ chain|escape }}&enabled=0">
+                                    <div class="stats-row__label">
+                                        <div class="stats-row__label-wrapper">
+                                            {{ chain }}
+                                        </div>
+                                    </div>
+                                    <div class="stats-row__data">
+                                        {{ src_chain_list[chain][1]|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Сети назначения</div>
+                    <div class="labeled-switch">
+                        <div class="switch switch-sm">
+                            <input
+                                type="checkbox"
+                                name="destNetworksStatsSwitch"
+                                id="destNetworksStatsSwitch"
+                            />
+                            <label for="destNetworksStatsSwitch">
+                                <div class="switch__container">
+                                    <div class="switch__circle"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <label for="destNetworksStatsSwitch" class="labeled-switch__label">Неиспользуемые</label>
+                    </div>
+                </div>
+                <div class="stats-cols">
+                    <div class="stats-rows" id="destNetworksStatsContainer" data-enabled="1">
+                        <div class="stats-rows__container data-enabled">
+                        {% for chain in dst_chain_list %}
+                            {% if dst_chain_list[chain][0] > 0 %}
+                                <a class="stats-row data-enabled" href="/download?destination={{ chain|escape }}&enabled=1">
+                                    <div class="stats-row__label">
+                                        <div class="stats-row__label-wrapper">
+                                            {{ chain }}
+                                        </div>
+                                    </div>
+                                    <div class="stats-row__data">
+                                        {{ dst_chain_list[chain][0]|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                        <div class="stats-rows__container data-disabled">
+                        {% for chain in dst_chain_list %}
+                            {% if dst_chain_list[chain][1] > 0 %}
+                                <a class="stats-row data-disabled" href="/download?destination={{ chain|escape }}&enabled=0">
+                                    <div class="stats-row__label">
+                                        <div class="stats-row__label-wrapper">
+                                            {{ chain }}
+                                        </div>
+                                    </div>
+                                    <div class="stats-row__data">
+                                        {{ dst_chain_list[chain][1]|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                                    </div>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Протоколы</div>
+                    <div class="labeled-switch">
+                        <div class="switch switch-sm">
+                            <input
+                                type="checkbox"
+                                name="protocolStatsSwitch"
+                                id="protocolStatsSwitch"
+                            />
+                            <label for="protocolStatsSwitch">
+                                <div class="switch__container">
+                                    <div class="switch__circle"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <label for="protocolStatsSwitch" class="labeled-switch__label">Неиспользуемые</label>
+                    </div>
+                </div>
+                <div class="stats-cols">
+                    <div class="stats-rows" id="protocolStatsContainer" data-enabled="1">
+                        <div class="stats-rows__container data-enabled">
+                            {% for protocol in protocol_list %}
+                                {% if protocol_list[protocol][0] > 0 %}
+                                    <a class="stats-row data-enabled" href="/download?protocol={{ protocol|escape }}&enabled=1">
+                                        <div class="stats-row__label">
+                                            <div class="stats-row__label-wrapper">
+                                                {{ protocol }}
+                                            </div>
+                                        </div>
+                                        <div class="stats-row__data">
+                                            {{ protocol_list[protocol][0]|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="stats-rows__container data-disabled">
+                            {% for protocol in protocol_list %}
+                                {% if protocol_list[protocol][1] > 0 %}
+                                    <a class="stats-row data-disabled" href="/download?protocol={{ protocol }}&enabled=0">
+                                        <div class="stats-row__label">
+                                            <div class="stats-row__label-wrapper">
+                                                {{ protocol }}
+                                            </div>
+                                        </div>
+                                        <div class="stats-row__data">
+                                            {{ protocol_list[protocol][1]|format_number }}<span> / {{ num_wallets|format_number }}</span>
+                                        </div>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

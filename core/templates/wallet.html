@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+{% block page %}
+<div class="wallet-list-page">
+    <div class="content-header">
+        <div class="content-header__header" id="walletListHeader">
+
+        </div>
+    <div class="content-header__actions">
+        <div class="labeled-switch" {{ "aria-disabled" if not is_names else "" }}>
+            <div class="switch">
+                <input
+                        type="checkbox"
+                        name="walletListShowIdSwitch"
+                        id="walletListShowIdSwitch"
+                        onchange="toggleShow()"
+                />
+                <label for="walletListShowIdSwitch">
+                    <div class="switch__container">
+                        <div class="switch__circle"></div>
+                    </div>
+                </label>
+            </div>
+            <label for="walletListShowIdSwitch" class="labeled-switch__label">Показать ID</label>
+        </div>
+    </div>
+    </div>
+    <div class="table-header">
+        <div class="cell cell-lg">Кошелёк</div>
+        <div class="cell" id="columnRankHeader" data-column="rank">Ранг</div>
+        <div class="cell" id="columnVolumeHeader" data-column="volume">Объём</div>
+        <div class="cell" id="columnTransHeader" data-column="trans">Транз.</div>
+        <div class="cell" id="columnSourceHeader" data-column="source">Сети</div>
+        <div class="cell" id="columnProtocolHeader" data-column="protocol">Протоколы</div>
+        <div class="cell" id="columnActivityHeader" data-column="activity">Период</div>
+        <div class="cell" id="columnBalanceHeader" data-column="balance">Баланс</div>
+        <div class="cell" id="columnDownloadedHeader" data-column="downloaded">Активность</div>
+        <div class="cell" id="columnUpdatedHeader" data-column="updated">Обновлено</div>
+    </div>
+    <div class="table-view">
+        <div class="table-view__wrapper">
+            <div class="table-body" id="walletList" data-show-id="0">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+    <script src="/js/list.js" type="module"></script>
+{% endblock %}

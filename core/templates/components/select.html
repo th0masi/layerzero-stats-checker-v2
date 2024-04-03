@@ -1,0 +1,54 @@
+<div class="select-wrap">
+  <div class="select-input" onclick="show()">
+    <input
+      type="text"
+      class="js-select-input-pass"
+      name="{{ name }}"
+      disabled
+      {%
+      if
+      value
+      %}value="{{ value }}"
+      {%
+      endif
+      %}
+      placeholder="{{ default}}"
+    />
+    <img src="/image/arrow-down.svg" onclick="show()" />
+  </div>
+  <div class="select-input__list hide">
+    <div class="select-input__item" onclick="change('{{ default }}')">
+      {{ default }}
+    </div>
+    {% for item in items %}
+    <div class="select-input__item" onclick="change('{{ item }}')">
+      {{ item }}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+  function show() {
+    const list = document.querySelector(".select-input__list");
+    list.classList.toggle("hide");
+  }
+
+  function change(item) {
+    const list = document.querySelector(".select-input__list");
+    const input = document.querySelector(".js-select-input-pass");
+    input.value = item;
+    list.classList.add("hide");
+  }
+
+  document.addEventListener("click", (e) => {
+    if (
+      !(
+        e.target.classList.contains("select-input__list") ||
+        e.target.classList.contains("select-input")
+      )
+    ) {
+      const list = document.querySelector(".select-input__list");
+      list.classList.add("hide");
+    }
+  });
+</script>

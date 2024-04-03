@@ -1,0 +1,17 @@
+{% extends "base/base.html" %} {% block page %}
+    <div class="wallet-list-page-logs">
+    <div class="content-header">
+        <div class="content-header__header" id="walletListHeader">
+            Логи
+        </div>
+        <div class="content-header__actions">
+        </div>
+    </div>
+        <div class="content__card" id="logContainer">
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="/js/logs.js" type="module"></script>
+{% endblock %}

@@ -1,0 +1,176 @@
+{% extends "base/base.html" %} {% block body %}wallet-item-page{% endblock %} {% block page %}
+    <div class="wallet-page">
+        <div class="card__wrap">
+            <div class="content__card">
+                <div class="info">
+                    <div class="info__wallet">
+                        <p class="info__wallet-text" onclick="onCopy(this, '{{ wallet.address }}')">
+                            <span data-hide="1">{{ wallet.address }}</span><span
+                                data-hide="0">{{ wallet.address | regex_replace(find='[a-zA-Z]', replace='x') }}</span>
+                        </p>
+                        <p class="info__wallet-label" onclick="onCopy(this, '{{ wallet.address }}')">
+                            {% if wallet['wname'] %}ID: {{ wallet['wname'] }}{% endif %}
+                        </p>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Объем</div>
+                            <div>{{ wallet['volume']|format_number }} $</div>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Возможный баланс</div>
+                            <a href="https://debank.com/profile/{{ wallet.address }}" target="_blank">
+                                <div>{{ wallet['balance_usd']|format_number }} $</div>
+                                {% include "svg/link.html" %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Ранг</div>
+                            <div>{{ wallet['current_rank']|format_number }}</div>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Протоколов</div>
+                            <div>{{ wallet['protocol_count'] }}</div>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Всего транзакций</div>
+                            <div>{{ wallet['count_txn'] }}</div>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Транзакция в майннете</div>
+                            <div>
+                                {{ 'Да' if wallet['is_mainnet'] else 'Нет' }}
+                                {% if wallet['is_mainnet'] %}
+                                <span class="checked"></span>
+                                {% else %}
+                                <span class="unchecked"></span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Последняя транзакция</div>
+                            <div>
+                                {{ wallet['last_activity'] }}
+                                {% if is_tx_in_current_month %}
+                                    <span class="checked"></span>
+                                {% else %}
+                                    <span class="unchecked"></span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info__item">
+                        <div class="info__statistic-item">
+                            <div>Обновление статистики:</div>
+                            <div>
+                                {{ wallet['last_update'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wallet-page__data-table">
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Исходящие сети</div>
+                    <div class="labeled-switch">
+                        <div class="switch switch-sm">
+                            <input
+                                    type="checkbox"
+                                    name="srcNetworksSwitch"
+                                    id="srcNetworksSwitch"
+                            />
+                            <label for="srcNetworksSwitch">
+                                <div class="switch__container">
+                                    <div class="switch__circle"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <label for="srcNetworksSwitch" class="labeled-switch__label">Неиспользуемые</label>
+                    </div>
+                </div>
+                <div class="wallet-tags" id="srcNetworksContainer" data-enabled="1">
+                    {% for item in all_source_networks %}
+                        <div class="wallet-tags__tag" data-tag="source" {% if item in wallet['src_chains_list'] %}data-enabled{% endif %}> {{ item | capitalize }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Сети назначения</div>
+                    <div class="labeled-switch">
+                        <div class="switch switch-sm">
+                            <input
+                                    type="checkbox"
+                                    name="destNetworksSwitch"
+                                    id="destNetworksSwitch"
+                            />
+                            <label for="destNetworksSwitch">
+                                <div class="switch__container">
+                                    <div class="switch__circle"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <label for="destNetworksSwitch" class="labeled-switch__label">Неиспользуемые</label>
+                    </div>
+                </div>
+                <div class="wallet-tags" id="destNetworksContainer" data-enabled="1">
+                    {% for item in all_destination_networks %}
+                        <div class="wallet-tags__tag" data-tag="destination" {% if item in wallet['dst_chains_list'] %}data-enabled{% endif %}>{{ item | capitalize }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="content__card">
+                <div class="top">
+                    <div class="top__label">Протоколы</div>
+                    <div class="labeled-switch">
+                        <div class="switch switch-sm">
+                            <input
+                                type="checkbox"
+                                name="protocolSwitch"
+                                id="protocolSwitch"
+                            />
+                            <label for="protocolSwitch">
+                                <div class="switch__container">
+                                    <div class="switch__circle"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <label for="protocolSwitch" class="labeled-switch__label">Неиспользуемые</label>
+                    </div>
+                </div>
+                <div class="wallet-tags" id="protocolContainer" data-enabled="1">
+                    {% for item in all_protocols %}
+                        <div class="wallet-tags__tag" data-tag="protocol"
+                             {% if item in wallet['protocol_list'] %}data-enabled{% endif %}> {{ item | capitalize }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %} {% block
+script %}
+    <script>
+        function onCopy(elem, string) {
+            window.navigator.clipboard.writeText(string).then(() => {
+                elem.classList.add("copy");
+                setTimeout(() => {
+                    elem.classList.remove("copy");
+                }, 2000);
+            });
+        }
+    </script>
+{% endblock %}

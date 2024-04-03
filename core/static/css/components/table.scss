@@ -1,0 +1,180 @@
+.table {
+  &-header {
+    margin-bottom: 8px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 7% 7% 4% 7% 6% 6% 10% 8% 8%;
+    grid-column-gap: 23px;
+
+    padding: 21px 24px;
+    .cell {
+      font-size: 16px;
+      color: var(--text-secondary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: "med";
+      position: relative;
+      &-lg {
+        cursor: unset !important;
+        padding-right: 0;
+        padding-left: 0px;
+        &::after {
+          display: none !important;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        padding-right: 24px;
+        padding-left: -24px;
+        &::after {
+          position: absolute;
+          display: inline-block;
+          right: 0;
+          width: 16px;
+          height: 16px;
+          background: url("../../image/sort-down.svg");
+          content: " ";
+          background-size: contain;
+          background-repeat: no-repeat;
+          opacity: 0.5;
+        }
+      }
+      &[data-sort="asc"] {
+        padding-right: 24px;
+        padding-left: -24px;
+        &::after {
+          background: url("../../image/sort-up.svg");
+          background-size: contain;
+          background-repeat: no-repeat;
+          opacity: 1;
+          position: absolute;
+          display: inline-block;
+          right: 0;
+          width: 16px;
+          height: 16px;
+
+          content: " ";
+        }
+      }
+      &[data-sort="desc"] {
+        padding-right: 24px;
+        padding-left: -24px;
+        &::after {
+          background: url("../../image/sort-down.svg");
+          background-size: contain;
+          background-repeat: no-repeat;
+          opacity: 1;
+          position: absolute;
+          display: inline-block;
+          right: 0;
+          width: 16px;
+          height: 16px;
+
+          content: " ";
+        }
+      }
+    }
+  }
+
+  &-view {
+    flex: 1;
+    position: relative;
+    &__wrapper {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      padding-right: 4px;
+
+      &::-webkit-scrollbar {
+        background-color: transparent;
+        border-radius: 50px;
+        padding: 0 4px 0 4px;
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(139, 139, 140, 0.4);
+        border-radius: 50px;
+      }
+    }
+  }
+
+  &-body {
+    overflow: hidden;
+    flex: 1;
+    //height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .table-item {
+      display: grid;
+      grid-auto-flow: column;
+      grid-column-gap: 23px;
+      grid-template-columns: auto 7% 7% 4% 7% 6% 6% 10% 8% 8%;
+      &:nth-child(2n + 1) {
+        background: var(--bg-accent-1-100);
+      }
+
+      &:nth-child(2n) {
+        background: var(--bg-accent-3-70);
+      }
+    }
+
+    &::-webkit-scrollbar {
+      background-color: var(--bg-accent-1-100);
+      border-radius: 50px;
+      padding: 0 4px;
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(139, 139, 140, 0.4);
+      border-radius: 50px;
+    }
+  }
+
+  &-item {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+    transition: background 0.3s;
+    border-radius: 12px;
+    padding: 21px 24px;
+
+    &:hover {
+      background: var(--bg-accent-2-80) !important;
+    }
+  }
+}
+
+.cell {
+  flex-grow: 1;
+  text-align: right;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: var(--text);
+  font-family: "reg";
+  white-space: nowrap;
+  &-lg {
+    width: 100%;
+    text-align: left;
+  }
+
+  &-md {
+    width: 100%;
+  }
+
+  &-s {
+    width: 100%;
+  }
+
+  &-xs {
+    width: 100%;
+  }
+}

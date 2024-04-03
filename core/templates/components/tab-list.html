@@ -1,0 +1,59 @@
+<div class="tab-list">
+  {% for tab in tabs %}
+  <div
+   {% if (loop.index|string in selected) == False and show != tab %}
+    onclick="add({{ loop.index }})"
+    {% elif (loop.index|string in selected) == True and show != tab %}
+    onclick="show('{{ tab }}')"
+   {% elif show == tab  %}
+   onclick="remove({{ loop.index }})"
+   {% else %}
+   {% endif %}
+    class="tab-item {% if show == tab %}show{% endif %} {% if loop.index|string in selected %}added{% endif %}"
+  >
+    {% if show == tab or loop.index|string in selected %}
+    <img src="/image/second-cross.svg" class="tab-item__cross" {% if show != tab %} onclick="removeSelect(event, {{ loop.index }})" {% endif %} />
+    {% endif %} {% include 'svg/'+tab+'.html' %}
+    <span>{{ tab }}</span>
+  </div>
+  {% endfor %}
+</div>
+<div class="tab-row">
+    {% for tab in tabs %}
+      {% if loop.index|string in selected %}
+      <span class="{% if show == tab %}white{% endif %} {% if tab in dones %}done{% endif %}">{{ tab }}</span>
+      <div class="tab-row__dot"></div>
+      {% endif %}
+    {% endfor %}
+</div>
+<script>
+  function add(id) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const _selected = urlParams.get("selected") || '';
+    const selected = !!_selected ? _selected.split("-") : [];
+    selected.push(id);
+    urlParams.set("selected", selected.join("-"));
+    window.location.search = urlParams.toString();
+  }
+
+  function remove() {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete("show")
+    window.location.search = urlParams.toString();
+  }
+
+  function removeSelect(e, id) {
+    e.stopPropagation();
+    const urlParams = new URLSearchParams(window.location.search);
+    const _selected = urlParams.get("selected") || '';
+    const selected = _selected.split("-") || [];
+    urlParams.set("selected", selected.filter(s => +s !== id).join("-"));
+    window.location.search = urlParams.toString();
+  }
+
+  function show(name){
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("show", name)
+    window.location.search = urlParams.toString();
+  }
+</script>

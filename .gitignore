@@ -1,0 +1,10 @@
+**/__pycache__/
+/Lib/
+/Scripts/
+/.idea/
+/include/
+justfile
+pyvenv.cfg
+data/database.db
+data/database_dune.db
+/logs/

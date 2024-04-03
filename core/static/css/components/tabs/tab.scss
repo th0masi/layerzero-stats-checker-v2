@@ -1,0 +1,245 @@
+.tab {
+  display: flex;
+  gap: 20px;
+  align-items: stretch;
+
+  &__wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &-decor {
+      position: absolute;
+      right: 0;
+      left: 0;
+      height: 260px;
+      width: 100%;
+      bottom: -16px;
+      border-radius: 1150px;
+      background: radial-gradient(
+        53.61% 53.61% at 50% 39.94%,
+        #2a5cf4 0%,
+        rgba(42, 92, 244, 0) 100%
+      );
+
+      filter: blur(125px);
+    }
+  }
+
+  &__container {
+    padding: 32px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    background: var(--bg-gradient);
+    border-radius: 24px;
+    flex-grow: 1;
+  }
+
+  &__second {
+    width: 370px;
+    flex-shrink: 0;
+    padding: 32px;
+    background: var(--bg-gradient);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    min-height: 442px;
+
+    &-label {
+      color: var(--text);
+      font-family: "med";
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    &-text {
+      font-size: 12px;
+      font-family: "reg";
+      margin-bottom: 18px;
+      color: var(--text-secondary);
+    }
+
+    &-input {
+      padding: 14px 16px;
+      outline: none;
+      background: var(--bg-basic);
+      border-radius: 12px;
+      border: 0.5px solid rgba(255, 255, 255, 0.07);
+      font-size: 14px;
+      color: var(--text-secondary);
+      display: block;
+      width: 100%;
+      font-family: "reg";
+    }
+
+    .from-to__input {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+  }
+
+  .title {
+    color: var(--text);
+    font-size: 16px;
+    font-family: "med";
+  }
+
+  .text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-family: "reg";
+  }
+
+  .mb {
+    &-24 {
+      margin-bottom: 24px;
+    }
+
+    &-18 {
+      margin-bottom: 18px;
+    }
+
+    &-8 {
+      margin-bottom: 8px;
+    }
+  }
+
+  .next {
+    display: flex;
+    gap: 32px;
+    margin-top: auto;
+
+    &__text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      padding: 12px 0;
+      font-family: "reg";
+      max-width: 300px;
+    }
+  }
+
+  .simple-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    input {
+      display: none;
+
+      &:checked + label {
+        color: var(--white);
+        border-color: transparent;
+        background: var(--primary-gradient);
+      }
+    }
+
+    &.jc-sb {
+      justify-content: space-between;
+    }
+
+    &.cross {
+      input:checked + label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &::after {
+          content: url("../image/second-cross.svg");
+          display: block;
+        }
+      }
+    }
+
+    label {
+      display: block;
+      padding: 12px 24px;
+      border-radius: 40px;
+      border: 1px solid var(--text-secondary);
+      font-size: 14px;
+      color: var(--text-secondary);
+      font-family: "reg";
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary);
+        border-color: var(--bg-accent-2-80);
+        background: var(--bg-accent-2-80);
+      }
+    }
+  }
+
+  .inner-tab {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 24px;
+
+    span {
+      color: var(--text-secondary);
+      font-size: 16px;
+      font-family: "bold";
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      &.active {
+        color: var(--primary);
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content: "";
+          display: block;
+          border-radius: 5px;
+          width: 5px;
+          height: 5px;
+          background: var(--text-secondary);
+        }
+      }
+    }
+  }
+
+  & + .popup {
+    .popup {
+      &__container {
+        max-width: 760px;
+        width: 100%;
+      }
+
+      &__text {
+        color: var(--text);
+        font-size: 20px;
+        margin-bottom: 20px;
+        font-family: "med";
+        text-align: center;
+
+        span {
+          color: var(--primary);
+        }
+      }
+    }
+
+    .btns {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 40px;
+    }
+  }
+
+  @import "./empty";
+  @import "./mint-nft";
+  @import "./mint-ems";
+  @import "./ui";
+  @import "./swap-bridge-lands";
+}

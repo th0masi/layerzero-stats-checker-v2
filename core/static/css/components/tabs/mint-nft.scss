@@ -1,0 +1,19 @@
+.mint-nft {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+
+  &__label {
+    color: var(--text);
+    font-size: 16px;
+    font-family: "med";
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-family: "reg";
+    margin-bottom: 24px;
+  }
+}

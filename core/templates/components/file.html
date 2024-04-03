@@ -1,0 +1,27 @@
+<div class="file">
+  <input
+    type="file"
+    onchange="onChange(event)"
+    name="file"
+    accept=".txt"
+    id="file"
+  />
+  <label for="file">
+    <img src="/image/load.svg" alt="load" />
+    <div class="file__text">
+      <span>Загрузите файл</span>
+      или перетащите его
+    </div>
+    <div class="file__text-second">TXT до 10MB</div>
+  </label>
+</div>
+<script>
+  function onChange(e) {
+    const patsPlace = document.querySelector(".file label");
+    patsPlace.classList.add("loaded");
+    patsPlace.innerHTML = `
+        <img src="/image/file.svg" />
+        <div class="file__name">${e.target.files[0].name || ""}</div>
+    `;
+  }
+</script>

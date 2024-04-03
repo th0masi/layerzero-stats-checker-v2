@@ -1,0 +1,106 @@
+.tab-list {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.tab-row {
+  display: flex;
+  margin-bottom: 24px;
+  align-items: center;
+  gap: 12px;
+  font-family: "bold";
+  color: var(--text-secondary);
+
+  &__dot {
+    background: var(--text-secondary);
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+
+    &:last-child {
+      display: none;
+    }
+  }
+
+  .white {
+    color: var(--text);
+  }
+
+  .done {
+    color: var(--primary);
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &::after {
+      content: url("../image/blue-check.svg");
+      display: block;
+    }
+
+    & + .tab-row__dot {
+      display: none;
+    }
+  }
+}
+
+.tab-item {
+  padding: 12px;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 12px;
+  transition: border-color 0.3s;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: var(--bg-accent-2);
+
+  &:not(.show, .added):hover {
+    border-color: var(--primary);
+  }
+
+  &__cross {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+  }
+
+  &.show {
+    svg,
+    span {
+      color: var(--text);
+    }
+
+    background: var(--primary-gradient);
+  }
+
+  &.added {
+    svg,
+    span {
+      color: var(--text);
+    }
+
+    border: 1px solid var(--primary);
+  }
+
+  svg {
+    color: var(--primary);
+    transition: color 0.3s;
+  }
+  span {
+    font-family: "bold";
+    font-size: 15px;
+    color: var(--primary);
+    transition: color 0.3s;
+  }
+}

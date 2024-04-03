@@ -1,0 +1,70 @@
+.transaction-list {
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    span {
+      font-size: 14px;
+      font-family: "reg";
+    }
+
+    &.done {
+      color: var(--success);
+    }
+
+    &.error {
+      color: var(--error);
+
+      position: relative;
+
+      &:hover {
+        cursor: pointer;
+        .error__message {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+
+    .error__message {
+      display: block;
+      width: max-content;
+      transition: all 0.3s;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      max-width: 495px;
+      padding: 20px;
+      border-radius: 12px;
+      background: var(--bg-accent-2-80);
+      font-family: "reg";
+      color: var(--error);
+      font-size: 14px;
+      position: absolute;
+      top: 100%;
+      right: 80%;
+    }
+
+    &.progress {
+      color: var(--warning);
+    }
+
+    &.cancel {
+      color: var(--text-secondary);
+    }
+  }
+  .cell {
+    &-lg {
+      max-width: 23.896%;
+    }
+
+    &-s {
+      max-width: 12.987%;
+    }
+
+    &-m {
+      max-width: 18.18%;
+    }
+  }
+}

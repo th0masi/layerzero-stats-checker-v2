@@ -1,0 +1,19 @@
+<div class="logs-list">
+  <div class="logs-list__scroll">
+    {% for log in logs %}
+    <div class="item">
+      <div class="item__date">{{ log.date }}</div>
+      <div class="item__address">
+        {{ log.address[:2] }}...{{ log.address[-4:] }}
+      </div>
+      <div class="item__type">{{ log.type }}</div>
+      <div class="item__status {% if log.status == 'ERROR' %}error{% endif %}">
+        {{ log.status }}
+      </div>
+      <div class="item__text {% if log.status == 'ERROR' %}error{% endif %}">
+        {{ log.message }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

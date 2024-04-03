@@ -1,0 +1,57 @@
+.mint-ems {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  flex-grow: 1;
+
+  &__top {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .item {
+    width: 100%;
+    position: relative;
+
+    &.select:after {
+      content: url("../image/arrow-down.svg");
+      bottom: 11px;
+      display: block;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      bottom: 11px;
+      right: 16px;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    select::-ms-expand {
+      display: none;
+    }
+  }
+
+  .file {
+    max-width: 328px;
+    border-radius: 12px;
+    border: 0.5px dashed rgba(255, 255, 255, 0.07);
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    outline: none;
+    border: 0.5px solid rgba(255, 255, 255, 0.07);
+    background: var(--bg-basic);
+    padding: 14px 40px 14px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: "reg";
+    color: var(--text);
+    position: relative;
+  }
+}

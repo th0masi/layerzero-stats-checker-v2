@@ -1,0 +1,64 @@
+.date-slider {
+  max-width: 1050px;
+  margin-bottom: 32px;
+  width: 100%;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--bg-accent-1-100);
+  display: flex;
+  align-items: center;
+
+  .swiper {
+    margin-right: -1px;
+  }
+
+  .swiper-slide {
+    cursor: pointer;
+    text-align: center;
+    color: var(--text);
+    transition: color, border-color 0.3s;
+    padding: 0 32px;
+    border-left: 1px solid transparent;
+
+    &:not(.swiper-slide-active) {
+      border-color: var(--white);
+    }
+
+    .day {
+      font-size: 24px;
+      font-family: "bold";
+    }
+
+    .month {
+      font-family: "reg";
+      font-size: 14px;
+    }
+
+    &:hover,
+    &.active {
+      color: var(--primary);
+    }
+  }
+
+  .nav-btn {
+    position: static;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    opacity: 1;
+
+    svg {
+      color: var(--bg-accent-gray);
+      transition: color 0.3s;
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
+
+    &::after,
+    &::before {
+      display: none;
+    }
+  }
+}

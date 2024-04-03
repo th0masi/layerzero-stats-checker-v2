@@ -1,0 +1,20 @@
+.empty {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+
+  &__title {
+    font-size: 20px;
+    font-family: "med";
+    color: var(--text);
+  }
+
+  &__text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-family: "reg";
+  }
+}

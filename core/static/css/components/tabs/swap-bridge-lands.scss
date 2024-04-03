@@ -1,0 +1,60 @@
+.swap,
+.bridge,
+.lands {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 32px;
+
+  &__row {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 32px;
+    width: 100%;
+    max-width: 100%;
+
+    &-two {
+      justify-content: flex-start;
+      gap: 120px;
+    }
+  }
+
+  &__col {
+    max-width: 250px;
+    width: 100%;
+    &-md {
+      max-width: 370px;
+      width: 100%;
+    }
+
+    &-top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+  }
+
+  &__lig {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    pointer-events: none;
+
+    &.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.bridge {
+  &__row {
+    gap: 64px;
+    justify-content: flex-start;
+  }
+
+  &__col-md {
+    max-width: 462px;
+  }
+}

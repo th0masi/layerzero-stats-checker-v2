@@ -1,0 +1,221 @@
+.form-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .top {
+    display: flex;
+    margin-bottom: 32px;
+    gap: 16px;
+    align-items: center;
+
+    &__label {
+      color: var(--text);
+      font-size: 16px;
+      font-family: "reg";
+    }
+  }
+
+  .card__wrap {
+    position: relative;
+    flex: 1;
+
+    .error,
+    .success {
+      display: none;
+    }
+
+    &-decoration {
+      width: 100%;
+      height: 260px;
+      position: absolute;
+      opacity: 0.4;
+      right: 0;
+      left: 0;
+      bottom: -40px;
+      border-radius: 100%;
+      background: radial-gradient(
+        53.61% 53.61% at 50% 39.94%,
+        #2a5cf4 0%,
+        rgba(42, 92, 244, 0) 100%
+      );
+      filter: blur(125px);
+    }
+
+    &.error {
+      .error {
+        display: flex;
+      }
+      .default,
+      .success {
+        display: none;
+      }
+
+      .card__wrap-decoration {
+        background: radial-gradient(
+          53.61% 53.61% at 50% 39.94%,
+          #fe5656 0%,
+          rgba(254, 86, 86, 0) 100%
+        );
+
+        filter: blur(125px);
+      }
+    }
+
+    &.success {
+      .success {
+        display: flex;
+      }
+      .default,
+      .error {
+        display: none;
+      }
+
+      .card__wrap-decoration {
+        background: radial-gradient(
+          53.61% 53.61% at 50% 39.94%,
+          #34c759 0%,
+          rgba(52, 199, 89, 0) 100%
+        );
+      }
+    }
+
+    .content__card {
+      position: relative;
+      z-index: 2;
+      display: flex;
+
+      min-height: 100%;
+    }
+  }
+
+  .form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    &.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &__container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-rows: auto auto;
+      justify-content: stretch;
+      row-gap: 32px;
+      column-gap: 32px;
+    }
+
+    .form-errors {
+      display: flex;
+      flex-direction: row;
+      gap: 48px;
+      font-size: 16px;
+
+      &__error {
+        color: var(--text-secondary);
+        font-family: "med";
+        span {
+          margin-left: 24px;
+        }
+      }
+    }
+
+    &__footer {
+      margin-top: 32px;
+      flex-direction: row;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__buttons {
+    .btn[disabled] {
+      opacity: 0.5;
+    }
+  }
+
+  .item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    &--wide {
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
+    &--hide {
+      display: none;
+    }
+    &__label {
+      margin-bottom: 16px;
+      font-size: 20px;
+      color: var(--text);
+      font-family: "med";
+    }
+
+    &__icon {
+      position: absolute;
+      bottom: 11px;
+      right: 16px;
+      width: 24px;
+      height: 24px;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    &:not(.clear) .item__icon:after {
+      content: url("../image/eye.svg");
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    &.hide .item__icon:after {
+      content: url("../image/eye-close.svg");
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    &.select:after {
+      content: url("../image/arrow-down.svg");
+      bottom: 11px;
+      display: block;
+      width: 24px;
+      height: 24px;
+      position: absolute;
+      bottom: 11px;
+      right: 16px;
+    }
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    select::-ms-expand {
+      display: none;
+    }
+
+    &__input {
+      display: block;
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: 0.5px solid rgba(255, 255, 255, 0.07);
+      background: var(--bg-basic);
+      padding: 14px 40px 14px 16px;
+
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: "reg";
+      color: var(--text-secondary);
+      resize: none;
+      position: relative;
+    }
+  }
+}

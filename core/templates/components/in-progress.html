@@ -1,0 +1,17 @@
+<div class="label">Идет работа</div>
+<div class="in-progress">
+  <div class="item">
+    <div class="item__title">Всего действий:</div>
+    <div class="item__text">{{ all }}</div>
+  </div>
+  <div class="item">
+    <div class="item__title">С ошибками:</div>
+    <div class="item__text red">{{ errors }}</div>
+  </div>
+  <div class="item">
+    <div class="item__title">Осталось:</div>
+    <div class="item__text">{{ left }}</div>
+  </div>
+  <button class="btn">Остановить</button>
+</div>
+{% include 'components/log-list.html' %}

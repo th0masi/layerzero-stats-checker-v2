@@ -1,0 +1,9 @@
+pip
+wheel
+setuptools
+greenlet
+SQLAlchemy
+flask
+aiosqlite
+ijson
+aiofiles

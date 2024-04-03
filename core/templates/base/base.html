@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+      <link rel="icon" type="image/png" href="./image/favicon.png">
+    <title>Thor Lab Checker</title>
+    <link rel="stylesheet" href="/css/main.css?v=31" />
+  </head>
+  <body class="{% block body%} {% endblock %}" data-hidden="0" data-logs="0">
+    <div class="header">
+        <a href="/" class="header__logo">
+            <img src="/image/logo.svg" alt="logo" class=""/>
+        </a>
+        <div class="header__buttons">
+            <a class="header__button" id="refreshHeaderButton" href="/updateData" {{ "aria-disabled" if refresh_disabled else "" }}>
+                <img src="/image/refresh.svg" alt=""/>
+            </a>
+            <div class="header__button header__button--eye" id="showAddressesToggle" {{ "aria-disabled" if eye_disabled else "" }}>
+            </div>
+            <a class="header__button" href="/stats" {{ "aria-disabled" if stats_disabled else "" }}>
+                <img src="/image/graph.svg" alt=""/>
+            </a>
+            <a class="header__button" href="/form" id="formHeaderButton" {{ "aria-disabled" if form_disabled else "" }}>
+                <img src="/image/document-add.svg" alt="/"/>
+            </a>
+            <a class="header__button" href="/exportCsv" id="downloadHeaderButton" target="_blank" {{ "aria-disabled" if download_disabled else "" }}>
+                <img src="/image/download.svg" alt=""/>
+            </a>
+            <a class="header__button" href="/logs" id="logsHeaderButton">
+                <img src="/image/logs.svg" alt=""/>
+            </a>
+        </div>
+        <div class="header__search">
+            <img src="/image/search.svg" alt="search-icon" class="header__search-icon"/>
+            <input type="text" id="searchInput" name="search" placeholder="Введите адрес или ID кошелька "/>
+        </div>
+        <div class="header__links">
+            <a class="header__link" href="https://t.me/thor_lab" target="_blank">
+                {% include "svg/telegram.html" %}
+                <span>Thor Lab</span>
+            </a>
+            <a class="header__link" href="https://github.com/th0masi" target="_blank">
+                {% include "svg/github.html" %}
+                <span>GitHub</span>
+            </a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            {% block page%} {% endblock %}
+            <div class="footer">
+                <span>Developed by <a href="https://t.me/th0masi">th0masi</a></span>
+            </div>
+        </div>
+    </div>
+    <script type="application/javascript">
+        var initialFlaskState = JSON.parse('{{ json_state|safe }}');
+    </script>
+    <script src="/js/layout.js" type="module"></script>
+    {% block script%} {% endblock %}
+  </body>
+</html>

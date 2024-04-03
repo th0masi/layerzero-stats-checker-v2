@@ -1,0 +1,76 @@
+ALL_NETWORKS = [
+    "bsc",
+    "polygon",
+    "ethereum",
+    "avalanche",
+    "zora",
+    "celo",
+    "fuse",
+    "fantom",
+    "linea",
+    "optimism",
+    "moonbeam",
+    "moonriver",
+    "aptos",
+    "zksync",
+    "scroll",
+    "loot",
+    "zkevm",
+    "moonriver",
+    "base",
+    "arbitrum",
+    "coredao",
+    "gnosis",
+    "klaytn",
+    "nova",
+    "kava",
+    "metis",
+    "mantle",
+    "harmony",
+    "shimmer",
+    "goerli",
+    "canto",
+]
+
+ALL_SOURCE_NETWORKS = ALL_NETWORKS
+
+ALL_DESTINATION_NETWORKS = ALL_NETWORKS
+
+ALL_PROTOCOLS = [
+    "stargate",
+    "zerius",
+    "merkly",
+    "dappgate",
+    "angle",
+    "trader joe",
+    "coredao",
+    "radiant capital",
+    "aptos bridge",
+    "pancakeswap",
+    "btc.b",
+    "dexalot",
+    "l2pass",
+    "whale",
+    "defi kingdoms",
+    "tevaera",
+    "harmony",
+    "stargator",
+    "testnet bridge",
+    "shimmerbridge",
+    "abracadabra money",
+    "getmint",
+    "gas.zip",
+    "womex",
+    "holograph",
+    "fuse bridge",
+    "l2telegraph",
+    "omni x",
+    "canto"
+]
+
+
+COMMON_TEMPLATE_CONTEXT = dict(
+    all_source_networks=ALL_SOURCE_NETWORKS,
+    all_destination_networks=ALL_DESTINATION_NETWORKS,
+    all_protocols=ALL_PROTOCOLS,
+)

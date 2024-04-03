@@ -1,0 +1,49 @@
+<div class="table-header transaction-list">
+  <div class="cell cell-lg">Проект</div>
+  <div class="cell cell-s">Время</div>
+  <div class="cell cell-m">Сумма</div>
+  <div class="cell cell-m">Потрачено</div>
+  <div class="cell cell-s">Тип транзакции</div>
+  <div class="cell cell-s">Статус</div>
+</div>
+<div class="table-body transaction-list">
+  {% for transaction in transactions %}
+  <div class="table-item">
+    <div class="cell cell-lg">{{ transaction.project }}</div>
+    <div class="cell cell-s">{{ transaction.date }}</div>
+    <div class="cell cell-m">{{ transaction.value }}</div>
+    <div class="cell cell-m">
+      {{ transaction.total }} {% include 'svg/eth-sm.html' %}
+    </div>
+    <div class="cell cell-s">{{ transaction.type }}</div>
+    <div class="cell cell-s">
+      {% if transaction.status == 'done' %}
+      <div class="status done">
+        <span>Выполнено</span>
+        <img src="/image/check.svg" />
+      </div>
+      {% endif %} {% if transaction.status == 'error' %}
+      <div class="status error">
+        <span>Ошибка</span>
+        <img src="/image/error-info.svg" />
+        <div class="error__message">
+          При создании транзакции возникла ошибка: File
+          "C:\Users\Jonghi\Desktop\crypto-soft\scroll-new\Lib\site-packages\jinja2\environment.py",
+          line 1301, in render self.environment.handle_exception()
+        </div>
+      </div>
+      {% endif %} {% if transaction.status == 'cancel' %}
+      <div class="status cancel">
+        <span>Отменено</span>
+        <img src="/image/cross.svg" />
+      </div>
+      {% endif %} {% if transaction.status == 'progress' %}
+      <div class="status progress">
+        <span>В работе</span>
+        <img src="/image/progress.svg" />
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,38 @@
+.in-progress {
+  padding: 24px 32px;
+  background: var(--bg-gradient);
+  border-radius: 24px;
+  margin-bottom: 40px;
+
+  display: flex;
+  gap: 32px;
+  align-items: center;
+
+  .item {
+    width: 100%;
+    max-width: 270px;
+
+    &__title {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-family: "med";
+      margin-bottom: 16px;
+    }
+
+    &__text {
+      color: var(--text);
+      font-size: 24px;
+      font-family: "bold";
+
+      &.red {
+        color: var(--error);
+      }
+    }
+  }
+
+  .btn {
+    margin-left: auto;
+    max-width: 300px;
+    width: 100%;
+  }
+}

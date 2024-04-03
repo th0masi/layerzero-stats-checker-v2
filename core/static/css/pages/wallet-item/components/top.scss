@@ -1,0 +1,221 @@
+.top {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  align-items: stretch;
+  position: relative;
+
+  .info {
+    width: 50%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+    &__top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      &-item {
+        font-size: 14px;
+        font-family: "reg";
+        color: var(--text-secondary);
+
+        span {
+          color: var(--text);
+        }
+      }
+    }
+
+    &__wallet {
+      display: flex;
+      margin-top: 8px;
+      align-items: center;
+      gap: 30px;
+
+      &-text {
+        color: var(--text);
+        font-size: 24px;
+        font-family: "bold";
+      }
+
+      &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        width: 60px;
+        height: 60px;
+        margin-left: auto;
+        border-radius: 12px;
+        background: var(--bg-accent-2);
+        transition: background 0.3s;
+
+        &:hover {
+          background: var(--white);
+        }
+      }
+    }
+
+    &__withdraw {
+      margin-top: auto;
+      &-label {
+        color: var(--text-secondary);
+        font-size: 14px;
+        font-family: "reg";
+        margin-bottom: 8px;
+      }
+
+      &-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .info__withdraw-check {
+          display: none;
+        }
+
+        &.copy {
+          .info__withdraw-check {
+            display: block;
+          }
+
+          .info__withdraw-copy {
+            display: none;
+          }
+        }
+      }
+
+      &-text {
+        color: var(--text);
+        font-size: 14px;
+        font-family: "reg";
+      }
+    }
+
+    &__statistic {
+      display: flex;
+      margin-top: auto;
+
+      &-item {
+        width: 100%;
+
+        div {
+          &:first-child {
+            color: var(--text-secondary);
+            font-size: 16px;
+            font-family: "med";
+            margin-bottom: 8px;
+          }
+
+          &:last-child {
+            color: var(--text);
+            font-family: "bold";
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .banner {
+    padding: 24px;
+    background: var(--bg-gradient);
+    border-radius: 24px;
+    width: 25%;
+    height: 256px;
+    overflow: hidden;
+
+    &__label {
+      display: flex;
+      min-height: 48px;
+      align-items: start;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 24px;
+
+      span {
+        color: var(--text);
+        font-size: 20px;
+        font-family: "bold";
+      }
+
+      img {
+        transition: all 0.3s;
+      }
+    }
+
+    &__item {
+      margin-bottom: 16px;
+      font-family: "reg";
+      color: var(--text-secondary);
+      font-size: 16px;
+      display: flex;
+      gap: 10px;
+
+      span {
+        display: block;
+        &.white {
+          color: var(--text);
+        }
+
+        &.date {
+          width: 125px;
+          margin-right: -10px;
+        }
+      }
+    }
+
+    &-pos {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 24.21%;
+      transition: all 0.3s;
+
+      &:hover {
+        width: 50%;
+
+        .banner__label {
+          img {
+            transform-origin: center center;
+            transform: rotate(180deg);
+          }
+        }
+
+        &::after {
+          opacity: 0;
+        }
+
+        .banner__container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          padding-bottom: 24px;
+          row-gap: 16px;
+
+          .banner__item {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 163px;
+        background: linear-gradient(
+          180deg,
+          rgba(13, 17, 26, 0) 0%,
+          #0d111a 100%
+        );
+        position: absolute;
+        bottom: 0;
+        transition: opacity 0.3s;
+        right: 0;
+        left: 0;
+      }
+    }
+  }
+}

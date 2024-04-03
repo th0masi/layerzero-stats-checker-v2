@@ -1,0 +1,59 @@
+.file {
+  width: 100%;
+  input {
+    display: none;
+  }
+
+  label {
+    display: block;
+    cursor: pointer;
+    min-height: 94px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    background-color: var(--bg-basic);
+    text-align: center;
+
+    &.loaded {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 14px;
+    font-family: "reg";
+    color: var(--text);
+    margin: 4px 0;
+    span {
+      color: var(--primary);
+    }
+
+    &-second {
+      font-size: 12px;
+      font-family: "reg";
+      color: var(--text-secondary);
+    }
+  }
+
+  &__name {
+    color: var(--text);
+    font-size: 14px;
+    font-family: "reg";
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-family: "reg";
+    width: 100%;
+  }
+}
