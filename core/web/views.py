@@ -226,14 +226,19 @@ async def walletItem(address):
     wallet_data = await db_manager.find_wallet(address=address)
     last_activity = wallet_data["last_activity"]
 
-    last_activity_date = datetime.datetime.strptime(last_activity, "%d.%m.%Y")
+    if last_activity:
+        last_activity_date = datetime.datetime.strptime(
+            last_activity, "%d.%m.%Y"
+        )
 
-    current_date = datetime.datetime.now()
+        current_date = datetime.datetime.now()
 
-    is_tx_in_current_month = (
-        last_activity_date.month == current_date.month
-        and last_activity_date.year == current_date.year
-    )
+        is_tx_in_current_month = (
+            last_activity_date.month == current_date.month
+            and last_activity_date.year == current_date.year
+        )
+    else:
+        is_tx_in_current_month = False
 
     return render_template(
         "wallet-item.html",
