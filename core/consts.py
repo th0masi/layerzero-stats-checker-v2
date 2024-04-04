@@ -30,6 +30,11 @@ ALL_NETWORKS = [
     "shimmer",
     "goerli",
     "canto",
+    "tenet",
+    "conflux",
+    "orderly",
+    "bb1",
+    "astar",
 ]
 
 ALL_SOURCE_NETWORKS = ALL_NETWORKS

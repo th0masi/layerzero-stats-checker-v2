@@ -167,10 +167,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div>
                         ${(wallet.prev_rank - wallet.current_rank) > 0
                                 ?
-                                html`<span class="positive">+${wallet.prev_rank - wallet.current_rank}</span>`
+                                html`<span class="positive">+${formatNumber(wallet.prev_rank - wallet.current_rank)}</span>`
                                 : (wallet.prev_rank - wallet.current_rank) < 0
                                         ?
-                                        html`<span class="negative">-${wallet.prev_rank - wallet.current_rank}</span>`
+                                        html`<span class="negative">${formatNumber(wallet.prev_rank - wallet.current_rank)}</span>`
                                         :
                                         ""}
                     </div>
